@@ -7,7 +7,7 @@ def transform_chosen_profile(span_set_overall, chosen_mutations_as_ls):
     location_set, vector_chosen_mutations = list(), np.zeros(len(span_set_overall.index))
     for mutation in chosen_mutations_as_ls:
         location = span_set_overall.loc[span_set_overall["mutation_column"] == mutation]
-        vector_chosen_mutations[location.index] = 1
+        vector_chosen_mutations[location.index-1] = 1
         location_set.append(location)
 
     span_set_overall.insert(int(1),"Presence",vector_chosen_mutations, True)
