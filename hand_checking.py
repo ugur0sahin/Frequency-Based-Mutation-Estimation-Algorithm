@@ -17,7 +17,7 @@ f_1, f_2, f_3, f_4 = open("/Users/ugursahin/Downloads/RESULTS/RESULTS-1.pkl", "r
     "/Users/ugursahin/Downloads/RESULTS/RESULTS-4.pkl", "rb")
 dict_1, dict_2, dict_3, dict_4 = pickle.load(f_1), pickle.load(f_2), pickle.load(f_3), pickle.load(f_4)
 
-prob_linkage_file = open(os.getcwd() + "/Prob_Linkage_filtered_rm_duplicates.csv")
+prob_linkage_file = open(os.getcwd() + "/Prob_Linkage_filtered_rm_duplicates.tsv")
 prob_linkage_dbs = pd.read_csv(prob_linkage_file,sep=";")
 
 

@@ -236,7 +236,7 @@ if __name__ == '__main__':
 
     interaction_dict_dbs = { "object_1":object_1_ls , "object_2":object_2_ls , "coefficient":coefficient}
     interaction_dbs = pd.DataFrame(interaction_dict_dbs)
-    interaction_dbs.drop_duplicates().to_csv("Prob_Linkage_filtered_rm_duplicates.csv",index=True)
+    interaction_dbs.drop_duplicates().to_csv("Prob_Linkage_filtered_rm_duplicates.csv",index=False)
 
     print(interaction_dbs)
 

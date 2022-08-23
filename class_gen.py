@@ -87,7 +87,7 @@ if __name__ != '__main__': #GENERATING OBJECT PKL FILE
 
 
 
-if __name__ == '__main__': #TESTING OUTPUT PKL OBJECT FILE
+if __name__ != '__main__': #TESTING OUTPUT PKL OBJECT FILE
     # IMPORT DATA AS PICKLE
 
     f_1, f_2, f_3, f_4 = open("/Users/ugursahin/Downloads/RESULTS/RESULTS-1.pkl", "rb"), open(
@@ -137,3 +137,38 @@ if __name__ != '__main__':
             print(pair_allele)
 
         print("_____________________________________________________________________________")
+
+if __name__ != '__main__':
+    #CREATING TRANS DBS AS CSV FILE
+
+    parent_dir = os.getcwd()
+    Prob_Linkaged_dbs = pd.read_csv(parent_dir + "/Prob_Linkage_filtered_rm_duplicates.csv")
+
+    trans_Prob_Linkaged_dbs_ls, equal_ls = list(), list()
+    for index, row in Prob_Linkaged_dbs.iterrows():
+        object_1_gene, object_2_gene = row["object_1"].split(" - ")[0], row["object_2"].split(" - ")[0]
+        if object_1_gene != object_2_gene:
+            print(object_1_gene,object_2_gene)
+            trans_Prob_Linkaged_dbs_ls.append(index)
+
+        else:
+            print("equal",object_1_gene, object_2_gene)
+            equal_ls.append(index)
+    print("Indexing Done !")
+    print(Prob_Linkaged_dbs.shape)
+    print(len(trans_Prob_Linkaged_dbs_ls), len(equal_ls))
+
+    trans_Prob_Linkaged_dbs = Prob_Linkaged_dbs.drop(index=equal_ls)
+    trans_Prob_Linkaged_dbs.to_csv("Prob_Linkage_filtered_rm_duplicates_trans_occuring.csv", index=False)
+    print(trans_Prob_Linkaged_dbs.shape)
+
+if __name__ == '__main__':
+    trans_Prob_Linkaged_dbs = pd.read_csv("Prob_Linkage_filtered_rm_duplicates_trans_occuring.csv")
+    """
+    for index, row in trans_Prob_Linkaged_dbs.iterrows():
+        print(row["object_1"].split("- ")[0], row["object_2"].split(" - ")[0])
+        if row["object_1"].split("- ")[0] is row["object_2"].split(" - ")[0]:
+            print("!")
+    """
+
+    print(trans_Prob_Linkaged_dbs.shape)
